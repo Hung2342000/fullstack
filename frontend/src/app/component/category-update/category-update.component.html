@@ -1,0 +1,17 @@
+
+<div class="col-md-6">
+    <h3> Update Category</h3>
+    <form (ngSubmit) = 'onSubmit()' >
+
+        <div class="form-group">
+            <label>Name Category</label>
+            <input type="text"  
+            id="namecategory" [(ngModel)] = "category.nameCategory" 
+            name ="nameCategory"
+            class="form-control ">
+        </div>
+
+        <button class="btn btn-success" type="submit">Submit</button>
+
+    </form>
+</div>
