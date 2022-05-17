@@ -1,0 +1,25 @@
+<div class="col-8" >
+  <h3> Create Role</h3>
+
+  <form (ngSubmit) = 'onSubmit()' >
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text"
+             [(ngModel)] = "role.name"
+             name="name"
+             class="form-control ">
+    </div>
+
+    <div class="form-group">
+      <label>Permission</label>
+      <select multiple class="form-control mb-4 col-12" name="permission" [(ngModel)] = "role.permission" >
+        <option >Chọn quyền</option>
+        <option *ngFor = "let p of permissions">{{p.name}}</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+
+</div>

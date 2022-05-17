@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private router :  Router ,
-    private productService : ProductService 
+    private productService : ProductService
   ) { }
 
   ngOnInit(): void {
@@ -25,12 +25,17 @@ export class ProductListComponent implements OnInit {
       console.log(data);
     },error => console.log(error));
   }
-// demo a cai route nay xem nao, e cau hinh route ở dau day
+
+  addProduct(){
+    this.router.navigate(['product-post']);
+  }
+
   updateProduct(id: number){
     this.router.navigate(['product-update',id]);
   }
+
   deleteProduct(id : number){
-    this.productService.deleteProduct(id).subscribe(data => 
+    this.productService.deleteProduct(id).subscribe(data =>
       this.getProductList()
     );
   }

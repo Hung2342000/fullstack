@@ -26,11 +26,11 @@ export class CategoryUpdateComponent implements OnInit {
 
     this.categoryService.getCategoryById(this.id).subscribe(data => {
       this.category = data
-      console.log("oke");
+      console.log("data", data);
     },error => console.log(error));
 
   }
-  
+
   onSubmit(){
     this.categoryService.updateCategory( this.id, this.category).subscribe( data=> {
         this.goToCategoryList();

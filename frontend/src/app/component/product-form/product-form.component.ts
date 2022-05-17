@@ -22,16 +22,17 @@ export class ProductFormComponent implements OnInit {
     category :new FormControl(),
 
   })
+
   constructor(
     private categoryService : CategoryService,
     private router: Router,
-    private productService : ProductService 
-    
+    private productService : ProductService
+
   ) { }
 
   ngOnInit(): void {
     this.getCategory();
- 
+
   }
   private getCategory(){
     this.categoryService.getCategoryList().subscribe(
@@ -43,7 +44,7 @@ export class ProductFormComponent implements OnInit {
 
   }
   saveProduct(){
-    
+
     this.productService.postProduct(this.productForm.value).subscribe(data => {
     this.goToProductList();
     console.log(data);

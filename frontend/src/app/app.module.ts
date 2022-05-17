@@ -12,6 +12,11 @@ import { ProductFormComponent } from './component/product-form/product-form.comp
 import { ProductUpdateComponent } from './component/product-update/product-update.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './component/login/login.component';
+import { RoleListComponent } from './component/role/role-list/role-list.component';
+import { RoleFromComponent } from './component/role/role-from/role-from.component';
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import { UserListComponent } from './component/user/user-list/user-list.component';
+import { UserFormComponent } from './component/user/user-form/user-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,14 +26,19 @@ import { LoginComponent } from './component/login/login.component';
     ProductListComponent,
     ProductFormComponent,
     ProductUpdateComponent,
-    LoginComponent
+    LoginComponent,
+    RoleListComponent,
+    RoleFromComponent,
+    UserListComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule ,
-    FormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

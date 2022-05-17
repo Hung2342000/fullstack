@@ -22,11 +22,11 @@ export class ProductService {
   public getById(id: number) : Observable<Product>{
     return this.httpClient.get<Product>(this.url + id);
   }
-  // cho nay truoc a bao r sau nay chi dung 2 phuong thuc do la get voi post thoi
+
   public updateProduct(id: number, product: Product) : Observable<Object>{
     return this.httpClient.put<Product>(this.url + 'put/' + id,product);
   }
-  
+
   public deleteProduct(id: number) : Observable<Object>{
     return this.httpClient.delete<Product>(this.url + 'delete/' + id);
   }

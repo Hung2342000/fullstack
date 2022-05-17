@@ -10,18 +10,16 @@ import { CategoryService } from '../../service/category.service';
 })
 export class CategoryFormComponent implements OnInit {
   category: Category = new Category();
- 
+
   constructor(
     private categoryService : CategoryService,
     private route: ActivatedRoute,
     private router: Router
-    
-    ) { } 
-
-
+    ) {}
 
   ngOnInit(): void {
   }
+
   saveCategory(){
     this.categoryService.postCategory(this.category).subscribe(data => {
       console.log("okee");
@@ -30,11 +28,11 @@ export class CategoryFormComponent implements OnInit {
     error => console.log(error)
     );
   }
+
   goToCategoryList() {
     this.router.navigate(['/category']);
   }
   onSubmit(){
-    //console.log(this.category);
     this.saveCategory();
   }
 

@@ -1,33 +1,33 @@
 <div class="col-8" >
     <h3> Create Product</h3>
-   
+
     <form (ngSubmit) = 'onSubmit()' [formGroup]="productForm">
 
-        <div class="form-group">    
+        <div class="form-group">
             <label>Name Product</label>
-            <input type="text"  id="nameProduct" 
+            <input type="text"
             formControlName = "nameProduct"
             name="nameProduct"
             class="form-control " >
         </div>
         <div class="form-group">
-          
+
             <label>Price</label>
-            <input type="text"  id="nameProduct" 
+            <input type="text"
             formControlName = "price"
             name="price"
             class="form-control " >
         </div>
         <div class="form-group">
-          
+
             <label>Category</label>
-            <select class=" form-control mb-4 col-12" formControlName = "category"> 
-                <option >Chọn Category</option> 
-                <option *ngFor = "let category of category">{{category.nameCategory}}</option> 
+            <select class=" form-control mb-4 col-12" formControlName = "category">
+                <option >Chọn Category</option>
+                <option *ngFor = "let category of category">{{category.nameCategory}}</option>
             </select>
         </div>
-        
+
         <button class="btn btn-success" type="submit">Submit</button>
     </form>
-    
+
 </div>

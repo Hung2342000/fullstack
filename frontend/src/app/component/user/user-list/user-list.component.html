@@ -1,0 +1,29 @@
+<h2>User List</h2>
+<button (click)="addUser()" class=" btn btn-primary">ADD</button>
+<br/><br/>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Password</th>
+    <th scope="col">Role</th>
+    <th scope="col">Action</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor = "let user of users">
+    <td >{{user.id }} </td>
+    <td >{{user.name}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.password}}</td>
+    <td>{{user.roles}}</td>
+    <td>
+      <button  class=" btn btn-primary">Edit</button>
+      <button  class=" btn btn-danger">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -11,26 +11,31 @@ import { CategoryService } from '../../service/category.service';
 export class CategoryListComponent implements OnInit {
 
   categorys !: Category[]   ;
-  constructor( 
+  constructor(
     private categoryService : CategoryService,
     private router :  Router ) { }
 
   ngOnInit(): void {
     this.getCategory();
+
   }
-  private getCategory(){
+  getCategory(){
     this.categoryService.getCategoryList().subscribe(
       data =>{
       this.categorys = data;
     }
     );
-
   }
+  addCategory(){
+    this.router.navigate(['category-post']);
+  }
+
    updateCategory(id : number){
       this.router.navigate(['category-update',id]);
   }
+
   deleteCategory(id : number){
-    this.categoryService.deleteCategory(id).subscribe(data => 
+    this.categoryService.deleteCategory(id).subscribe(data =>
       {
         this.getCategory();
       }

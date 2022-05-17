@@ -7,35 +7,34 @@ import { Category } from '../model/category';
 })
 export class CategoryService {
 
-  // may cai chung chung nhu localhost hay cau hinh thi e tim hieu cach cau hinh enviroment nhe
-  private urlGet = 'http://localhost:8080/category/list';
-  private urlPost = 'http://localhost:8080/category/post';
-  private urlUpdate = 'http://localhost:8080/category/';
-  private urlU = 'http://localhost:8080/category/put/';
-  private urlDelete = 'http://localhost:8080/category/delete/';
-  constructor(private httpClient: HttpClient) { 
-    
+  private url = 'http://localhost:8080/category/';
+
+  constructor(private httpClient: HttpClient) {
   }
+
   //list
   public getCategoryList() : Observable<Category[]>{
-    return this.httpClient.get<Category[]>(this.urlGet);
+    return this.httpClient.get<Category[]>(this.url + "list");
   }
+
   //post
   public postCategory(category : Category) : Observable<Object>{
-    return this.httpClient.post<Category>(this.urlPost, category);
-    
+    return this.httpClient.post<Category>(this.url + 'post', category);
+
   }
 
    public getCategoryById(id: number): Observable<Category>{
-    return this.httpClient.get<Category>(this.urlUpdate + id );
+    return this.httpClient.get<Category>(this.url + id );
    }
 
+   //update
    public updateCategory(id: number,category : Category): Observable<Object>{
-    return this.httpClient.put(this.urlU + id ,category)
+    return this.httpClient.put(this.url + 'put/' + id ,category)
    }
 
+   //delete
    public deleteCategory(id: number): Observable<Object>{
-    return this.httpClient.delete(this.urlDelete + id)
+    return this.httpClient.delete(this.url + 'delete/' + id)
    }
 
 }

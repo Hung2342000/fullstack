@@ -25,8 +25,11 @@ export class ProductUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.getCategory();
-    this.productService.getById(this.id).subscribe(data => this.product = data)
+    this.productService.getById(this.id).subscribe(
+      data => this.product = data
+    )
   }
+
   private getCategory(){
     this.categoryService.getCategoryList().subscribe(
       data =>{
@@ -34,12 +37,15 @@ export class ProductUpdateComponent implements OnInit {
       console.log(this.category);
     }
     );
-
   }
+
   onSubmit(){
-    this.productService.updateProduct(this.id,this.product).subscribe(data => this.goToProductList())
-    console.log("okee")
+    this.productService.updateProduct(this.id, this.product).subscribe(data =>
+      this.goToProductList()
+    )
+    console.log("dataaaa",this.product);
   };
+
   goToProductList(){
     this.router.navigate(['/product'])
   }
