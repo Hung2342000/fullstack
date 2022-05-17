@@ -22,7 +22,6 @@ public class CustomProductRepository {
         return query.getResultList();
     }
     public List<ProductsDto> find() {
-        // cho nay a giu nguyen
         String sql = "SELECT p.id as id, p.name_product as nameProduct, p.price as price, p.category as category FROM Products p ORDER BY p.price ASC LIMIT 5";
         Query query = entityManager.createNativeQuery(sql,"mappingDto");
         return (List<ProductsDto>) query.getResultList();

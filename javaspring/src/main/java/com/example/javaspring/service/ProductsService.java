@@ -38,6 +38,7 @@ public class ProductsService {
         }
         return productsDtoList;
     }
+
     public List<ProductsDto> listCategory(long Id){
         List<Products> productsList =  customProductRepository.findCategoryId(Id);
         List<ProductsDto> productsDtoList = new ArrayList<>();
@@ -88,36 +89,24 @@ public class ProductsService {
         }
         return test;
     }
-    public String puttProduct(ProductsDto productsDto, long id){
+    public String putProduct(ProductsDto productsDto, long id){
         Optional<Products> productsOptional = productsRepository.findById(id);
         String test;
-        if(productsOptional.isPresent()){
-            Products products = productsRepository.findByName(productsDto.getNameProduct());
-            if(products != null){
-                test = "Đã tồn tại bản ghi";
-            }
-            else{
-                if(categoryRepository.findByName(productsDto.getCategory())!= null){
-                    Products productPut = productsOptional.get();
-                    Category category = categoryRepository.findByName(productsDto.getCategory());
-                    productPut.setNameProduct(productsDto.getNameProduct());
-                    productPut.setPrice(productsDto.getPrice());
-                    productPut.setCategory(category);
-                    productsRepository.save(productPut);
-                    test = "Sửa thành công";
-                }
-               else{
-                   test = "Không tồn tại Category";
-                }
-            }
+        if(productsOptional.isPresent() && categoryRepository.findByName(productsDto.getCategory())!= null){
+            Products productPut = productsOptional.get();
+            Category category = categoryRepository.findByName(productsDto.getCategory());
+            productPut.setNameProduct(productsDto.getNameProduct());
+            productPut.setPrice(productsDto.getPrice());
+            productPut.setCategory(category);
+            productsRepository.save(productPut);
+            test = "Sửa thành công";
         }
-
         else{
-
-            test = "Không tôn tại bản ghi";
+            test = "Không tồn tại Category";
         }
         return test;
     }
+
     public String deleleProducts(long id){
         Optional<Products> productsOptional = productsRepository.findById(id);
         String test;

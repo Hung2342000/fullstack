@@ -36,9 +36,6 @@ public class CategoryService {
         else {
             throw new RuntimeException("Không tồn tại bản ghi " + id);
         }
-
-
-
     }
 
     public String postCategory(CategoryDto categoryDto){
@@ -54,10 +51,10 @@ public class CategoryService {
         }
         return test;
     }
+
     public String putCategory(CategoryDto categoryDto,long id){
         String test;
         Optional<Category> categoryOptional = categoryRepository.findById(id);
-
         if(categoryOptional.isPresent()){
             Category category = categoryRepository.findByName(categoryDto.getNameCategory());
             if(category != null){

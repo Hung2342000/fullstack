@@ -3,7 +3,6 @@ package com.example.javaspring.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -11,18 +10,15 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-@Table(name = "category")
-public class Category {
+@Table(name = "test")
+
+public class Test {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private long id;
 
-    @Column(name = "nameCategory", nullable = false,unique = true)
-    private String nameCategory;
-
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL )
-    private List<Products> products;
-
+    @Column(name = "test", nullable = false)
+    private String test;
 }

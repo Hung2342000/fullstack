@@ -14,6 +14,7 @@ public class ProductMapper {
         productsDto.setId(products.getId());
         return productsDto;
     }
+
     public Products toProduct(ProductsDto productsDto){
         Products products = new Products();
         products.setPrice(productsDto.getPrice());
