@@ -1,10 +1,8 @@
-
-
 <div class="login-box">
   <h2>Login</h2>
   <form (ngSubmit) = 'onSubmit()'>
     <div class="user-box">
-      <input [(ngModel)] = "userLogin.email" type="text" name="">
+      <input [(ngModel)] = "userLogin.username" type="text" name="">
       <label>Username</label>
     </div>
 
@@ -12,8 +10,6 @@
       <input [(ngModel)] = "userLogin.password" type="password" name="">
       <label>Password</label>
     </div>
-      <button>
-      Submit
-    </button>
+    <button type="submit"> Submit</button>
   </form>
 </div>
