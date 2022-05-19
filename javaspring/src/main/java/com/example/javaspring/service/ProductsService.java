@@ -5,14 +5,12 @@ import com.example.javaspring.mapper.ProductMapper;
 import com.example.javaspring.model.Category;
 import com.example.javaspring.model.Products;
 import com.example.javaspring.repository.CategoryRepository;
-import com.example.javaspring.repository.CustomProductRepository;
 import com.example.javaspring.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -22,9 +20,6 @@ public class ProductsService {
 
     @Autowired
     CategoryRepository categoryRepository;
-
-    @Autowired
-    CustomProductRepository customProductRepository;
 
     @Autowired
     ProductMapper productMapper;
@@ -39,14 +34,6 @@ public class ProductsService {
         return productsDtoList;
     }
 
-    public List<ProductsDto> listCategory(long Id){
-        List<Products> productsList =  customProductRepository.findCategoryId(Id);
-        List<ProductsDto> productsDtoList = new ArrayList<>();
-        for (Products products : productsList){
-            productsDtoList.add(productMapper.toProductsDto(products));
-        }
-        return productsDtoList;
-    }
     public ProductsDto getOne(long Id){
         Optional<Products> product = productsRepository.findById(Id);
 
@@ -58,14 +45,6 @@ public class ProductsService {
         }
 
 
-    }
-    public List<ProductsDto> listMaxPrice(){
-        List<Products> productsList = customProductRepository.findMaxPrice();
-        List<ProductsDto> productsDtoList = new ArrayList<>();
-        for (Products products : productsList){
-            productsDtoList.add(productMapper.toProductsDto(products));
-        }
-        return productsDtoList;
     }
 
     public String postProduct(ProductsDto productsDto){

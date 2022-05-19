@@ -4,6 +4,7 @@ import com.example.javaspring.dto.CategoryDto;
 import com.example.javaspring.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
+    @PreAuthorize("hasAuthority('list_category')")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<CategoryDto> getList() {
         List<CategoryDto> categoryDtoList = categoryService.getList();

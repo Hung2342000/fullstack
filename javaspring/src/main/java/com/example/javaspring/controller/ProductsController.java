@@ -1,9 +1,9 @@
 package com.example.javaspring.controller;
 
 import com.example.javaspring.dto.ProductsDto;
-import com.example.javaspring.repository.CustomProductRepository;
 import com.example.javaspring.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,9 +14,7 @@ public class ProductsController {
     @Autowired
     ProductsService productsService;
 
-    @Autowired
-    CustomProductRepository customProductRepository;
-
+    @PreAuthorize("hasAuthority('list_product')")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<ProductsDto> listProducts(){
         List<ProductsDto> productsDtoList = productsService.listProduct();
@@ -28,23 +26,6 @@ public class ProductsController {
         return productsService.getOne(id);
     }
 
-    @RequestMapping(value = "/maxPrice", method = RequestMethod.GET)
-    public List<ProductsDto> list1Products(){
-        List<ProductsDto> productsDtoList = productsService.listMaxPrice();
-        return productsDtoList;
-    }
-
-    @RequestMapping(value = "/listCategoryId/{id}", method = RequestMethod.GET)
-    public List<ProductsDto> listCategory(@PathVariable long id){
-        List<ProductsDto> List = productsService.listCategory(id);
-        return List;
-    }
-
-    @RequestMapping(value = "/listProductDto", method = RequestMethod.GET)
-    public List<ProductsDto> listCategory(){
-        List<ProductsDto> List = customProductRepository.find() ;
-        return List;
-    }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public void productsPost(@RequestBody ProductsDto p){

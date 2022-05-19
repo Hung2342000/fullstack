@@ -15,32 +15,6 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@SqlResultSetMapping(
-        name ="mappingDto",
-        classes = @ConstructorResult(
-                targetClass = ProductsDto.class,
-                columns = {
-                        @ColumnResult(name = "id",type = Long.class),
-                        @ColumnResult(name = "nameProduct",type = String.class),
-                        @ColumnResult(name = "price",type = Long.class),
-                        @ColumnResult(name = "category",type = String.class)
-                }
-        )
-)
-
-@SqlResultSetMapping(
-        name ="mapping2",
-        classes = @ConstructorResult(
-                targetClass = ProductsDto.class,
-                columns = {
-                        @ColumnResult(name = "id",type = Long.class),
-                        @ColumnResult(name = "nameProduct",type = String.class),
-                        @ColumnResult(name = "price",type = Long.class),
-                        @ColumnResult(name = "category",type = String.class),
-                        @ColumnResult(name = "abc", type = String.class)
-                }
-        )
-)
 
 @Table(name = "products")
 public class Products {

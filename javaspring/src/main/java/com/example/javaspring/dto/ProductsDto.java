@@ -22,23 +22,4 @@ public class ProductsDto {
     private long price;
 
     private String category;
-
-    private String abc;
-
-    // mappingDto
-    public ProductsDto(long Id, String NameProduct, long Price, String NameCategory) {
-        this.id = Id;
-        this.nameProduct = NameProduct;
-        this.category = NameCategory;
-        this.price = Price;
-    }
-
-    // mapping2
-    public ProductsDto(long Id, String NameProduct, long Price, String NameCategory, String abc) {
-        this.id = Id;
-        this.nameProduct = NameProduct;
-        this.price = Price;
-        this.category = NameCategory;
-        this.abc = abc;
-    }
 }
