@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryListComponent } from './component/category-list/category-list.component';
@@ -17,6 +17,10 @@ import { RoleFromComponent } from './component/role/role-from/role-from.componen
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 import { UserListComponent } from './component/user/user-list/user-list.component';
 import { UserFormComponent } from './component/user/user-form/user-form.component';
+import { HomeComponent } from './component/home/home.component';
+import {AuthInterceptor} from "./http/auth.interceptor";
+import {NgSelectModule} from "@ng-select/ng-select";
+import { UnauthorizationComponent } from './component/unauthorization/unauthorization.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +34,9 @@ import { UserFormComponent } from './component/user/user-form/user-form.componen
     RoleListComponent,
     RoleFromComponent,
     UserListComponent,
-    UserFormComponent
+    UserFormComponent,
+    HomeComponent,
+    UnauthorizationComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +44,16 @@ import { UserFormComponent } from './component/user/user-form/user-form.componen
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    NgSelectModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

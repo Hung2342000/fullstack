@@ -11,6 +11,8 @@ import {RoleListComponent} from "./component/role/role-list/role-list.component"
 import {RoleFromComponent} from "./component/role/role-from/role-from.component";
 import {UserListComponent} from "./component/user/user-list/user-list.component";
 import {UserFormComponent} from "./component/user/user-form/user-form.component";
+import {HomeComponent} from "./component/home/home.component";
+import {UnauthorizationComponent} from "./component/unauthorization/unauthorization.component";
 
 const routes: Routes = [
 
@@ -25,6 +27,9 @@ const routes: Routes = [
   {path: 'user', component: UserListComponent },
   {path: 'user-post', component: UserFormComponent },
   {path: 'login', component: LoginComponent},
+  {path: '401', component: UnauthorizationComponent},
+  {path: 'home', component: HomeComponent},
+
   { path: '', redirectTo: 'category' , pathMatch: 'full'}
 ];
 
