@@ -23,6 +23,7 @@ public class CategoryController {
         return categoryDtoList;
     }
 
+    @PreAuthorize("hasAuthority('add_category')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public CategoryDto findById(@PathVariable long id) {
         CategoryDto category = categoryService.getById(id);
@@ -39,6 +40,7 @@ public class CategoryController {
         categoryService.putCategory(categoryDto, id);
     }
 
+    @PreAuthorize("hasAuthority('delete_category')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void deleteCategory(@PathVariable long id) {
         categoryService.deleteCategory(id);

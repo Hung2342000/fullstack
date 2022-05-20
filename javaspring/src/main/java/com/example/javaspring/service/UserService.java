@@ -2,6 +2,7 @@ package com.example.javaspring.service;
 
 import com.example.javaspring.dto.UserDto;
 import com.example.javaspring.mapper.UserMapper;
+import com.example.javaspring.model.Category;
 import com.example.javaspring.model.Role;
 import com.example.javaspring.model.User;
 import com.example.javaspring.repository.RoleRepository;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Component
 public class UserService {
     @Autowired
@@ -43,6 +46,19 @@ public class UserService {
         userpost.setRoles(roleList);
         userRepository.save(userpost);
         return userDto;
+    }
+
+    public String deleteUser(long id){
+        String test;
+        Optional<User> user = userRepository.findById(id);
+        if(user.isPresent()){
+            userRepository.deleteById(id);
+            test = "Xoá thành công";
+        }
+        else{
+            test = "Không tồn tại bản ghi";
+        }
+        return test;
     }
 
 }

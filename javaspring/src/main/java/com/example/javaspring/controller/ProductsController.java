@@ -26,7 +26,7 @@ public class ProductsController {
         return productsService.getOne(id);
     }
 
-
+    @PreAuthorize("hasAuthority('add_product')")
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public void productsPost(@RequestBody ProductsDto p){
       productsService.postProduct(p);
@@ -38,6 +38,8 @@ public class ProductsController {
        productsService.putProduct(p,id);
 
     }
+
+    @PreAuthorize("hasAuthority('delete_product')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void productsDelete(@PathVariable long id){
         productsService.deleleProducts(id);

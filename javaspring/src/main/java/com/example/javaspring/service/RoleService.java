@@ -2,6 +2,7 @@ package com.example.javaspring.service;
 
 import com.example.javaspring.dto.RoleDto;
 import com.example.javaspring.mapper.RoleMapper;
+import com.example.javaspring.model.Category;
 import com.example.javaspring.model.Permission;
 import com.example.javaspring.model.Role;
 import com.example.javaspring.model.User;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class RoleService {
@@ -56,6 +58,19 @@ public class RoleService {
         rolepost.setPermissions(permissions);
         roleRepository.save(rolepost);
         return roleDto;
+    }
+
+    public String deleteRole(long id){
+        String test;
+        Optional<Role> role = roleRepository.findById(id);
+        if(role.isPresent()){
+            roleRepository.deleteById(id);
+            test = "Xoá thành công";
+        }
+        else{
+            test = "Không tồn tại bản ghi";
+        }
+        return test;
     }
 
 

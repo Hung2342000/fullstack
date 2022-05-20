@@ -1,5 +1,4 @@
 package com.example.javaspring.security.jwt;
-import com.example.javaspring.model.User;
 import com.example.javaspring.service.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
