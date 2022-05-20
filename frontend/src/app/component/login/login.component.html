@@ -2,12 +2,12 @@
   <h2>Login</h2>
   <form (ngSubmit) = 'onSubmit()'>
     <div class="user-box">
-      <input [(ngModel)] = "userLogin.username" type="text" name="">
+      <input [(ngModel)] = "userLogin.username" type="text" name="username">
       <label>Username</label>
     </div>
 
     <div class="user-box">
-      <input [(ngModel)] = "userLogin.password" type="password" name="">
+      <input [(ngModel)] = "userLogin.password" type="password" name="password">
       <label>Password</label>
     </div>
     <button type="submit"> Submit</button>

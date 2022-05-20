@@ -9,7 +9,7 @@
             <th scope="col">Name Product</th>
             <th scope="col">Price</th>
             <th scope="col">Name Category</th>
-            <th scope="col">Action</th>
+            <th scope="col"></th>
 
           </tr>
         </thead>
@@ -19,7 +19,7 @@
             <td >{{product.nameProduct}}</td>
             <td >{{product.price}}</td>
             <td >{{product.category}}</td>
-            <td>
+            <td style="text-align: right">
               <button (click)="updateProduct(product.id)"   class=" btn btn-primary">Edit</button>
               <button  (click)="deleteProduct(product.id)"  class=" btn btn-danger">Delete</button>
           </td>

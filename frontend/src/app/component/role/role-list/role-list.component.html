@@ -1,4 +1,4 @@
-<h2>Role</h2>
+<h2>Role List</h2>
 <button (click)="addRole()" class=" btn btn-primary">ADD</button>
 <br/><br/>
 <table class="table table-striped">
@@ -7,18 +7,18 @@
     <th scope="col">Id</th>
     <th scope="col">Name</th>
     <th scope="col">Permission</th>
-    <th scope="col">Action</th>
+    <th style="text-align: right " scope="col"></th>
 
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let role of roles">
     <td>{{ role.id}}</td>
-    <td>{{ role.name}}</td>
-    <td>{{ role.permission}}</td>
-    <td>
+    <td >{{ role.name}}</td>
+    <td style="max-width: 250px ;word-break: break-word">{{ role.permission}}</td>
+    <td style="text-align: right ">
       <button class=" btn btn-primary">Edit</button>
-      <button class=" btn btn-danger">Delete</button>
+      <button (click)="deleteRole(role.id)" class=" btn btn-danger">Delete</button>
     </td>
   </tr>
   </tbody>

@@ -25,10 +25,10 @@
         <div class="form-group">
 
             <label>Category</label>
-            <select [(ngModel)] = "product.category"  class=" form-control mb-4 col-12" [ngModelOptions]="{standalone: true}">
-                <option >Chọn Category</option>
-                <option   *ngFor = "let category of category">{{category.nameCategory}}</option>
-            </select>
+          <ng-select [(ngModel)]="product.category"  placeholder="Select Role" [ngModelOptions]="{standalone: true}">
+            <ng-option *ngFor="let cate of category" [value]="cate.nameCategory">{{cate.nameCategory}}</ng-option>
+          </ng-select>
+
         </div>
 
         <button class="btn btn-success" type="submit">Submit</button>

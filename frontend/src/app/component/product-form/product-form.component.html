@@ -1,6 +1,5 @@
 <div class="col-8" >
     <h3> Create Product</h3>
-
     <form (ngSubmit) = 'onSubmit()' [formGroup]="productForm">
 
         <div class="form-group">
@@ -21,10 +20,9 @@
         <div class="form-group">
 
             <label>Category</label>
-            <select class=" form-control mb-4 col-12" formControlName = "category">
-                <option >Chọn Category</option>
-                <option *ngFor = "let category of category">{{category.nameCategory}}</option>
-            </select>
+          <ng-select [(ngModel)]="product.category" [multiple]="true" placeholder="Select Category" [ngModelOptions]="{standalone: true}">
+            <ng-option *ngFor="let cate of category" [value]="cate.nameCategory">{{cate.nameCategory}}</ng-option>
+          </ng-select>
         </div>
 
         <button class="btn btn-success" type="submit">Submit</button>

@@ -13,10 +13,9 @@
 
     <div class="form-group">
       <label>Permission</label>
-      <select multiple class="form-control mb-4 col-12" name="permission" [(ngModel)] = "role.permission" >
-        <option >Chọn quyền</option>
-        <option *ngFor = "let p of permissions">{{p.name}}</option>
-      </select>
+      <ng-select [(ngModel)]="role.permission" [multiple]="true" placeholder="Select Permission" [ngModelOptions]="{standalone: true}">
+        <ng-option *ngFor="let p of permissions" [value]="p.name">{{p.name}}</ng-option>
+      </ng-select>
     </div>
 
     <button class="btn btn-success" type="submit">Submit</button>

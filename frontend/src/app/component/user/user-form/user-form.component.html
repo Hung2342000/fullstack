@@ -28,11 +28,10 @@
     </div>
 
     <div class="form-group">
-      <label>Permission</label>
-      <select multiple class="form-control mb-4 col-12" name="role" [(ngModel)] = "user.roles" >
-        <option >Chọn quyền</option>
-        <option *ngFor = "let role of roles">{{role.name}}</option>
-      </select>
+      <label>Roles</label>
+      <ng-select [(ngModel)]="user.roles" [multiple]="true" placeholder="Select Role" [ngModelOptions]="{standalone: true}">
+        <ng-option *ngFor="let role of roles" [value]="role.name">{{role.name}}</ng-option>
+      </ng-select>
     </div>
 
     <button class="btn btn-success" type="submit">Submit</button>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../../model/user";
 import {UserService} from "../../../service/user.service";
 import {Router} from "@angular/router";
+import {TokenService} from "../../../service/token.service";
 
 @Component({
   selector: 'app-user-list',
@@ -9,15 +10,27 @@ import {Router} from "@angular/router";
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-
+  roles !: string[];
   users !: User[];
   constructor(
     private userService : UserService,
-    private router :  Router
+    private router :  Router,
+    private tokenService : TokenService
   ) { }
 
   ngOnInit(): void {
-    this.getUser();
+    this.roles = this.tokenService.getRoles();
+    console.log(this.roles);
+
+    if(this.roles === null ){
+      this.router.navigate(['401']);
+    }
+    else {
+      if( this.roles.includes('list_user') === false ){
+        this.router.navigate(['401']);
+      }
+      else{this.getUser();}
+    }
   }
 
   getUser(){
@@ -29,6 +42,12 @@ export class UserListComponent implements OnInit {
   }
   addUser(){
     this.router.navigate(['/user-post'])
+  }
+
+  delete(id: number){
+    this.userService.deleteUser(id).subscribe(data =>
+      this.getUser()
+    )
   }
 
 }
