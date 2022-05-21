@@ -23,7 +23,7 @@ export class UserListComponent implements OnInit {
     console.log(this.roles);
 
     if(this.roles === null ){
-      this.router.navigate(['401']);
+      this.router.navigate(['login']);
     }
     else {
       if( this.roles.includes('list_user') === false ){

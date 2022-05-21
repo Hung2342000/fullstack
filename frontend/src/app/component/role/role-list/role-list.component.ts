@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Role} from "../../../model/role";
 import {RoleService} from "../../../service/role.service";
 import {Router} from "@angular/router";
-import {dashCaseToCamelCase} from "@angular/compiler/src/util";
 import {TokenService} from "../../../service/token.service";
 
 @Component({
@@ -25,7 +24,7 @@ export class RoleListComponent implements OnInit {
     console.log(this.roles);
 
     if(this.role === null ){
-      this.router.navigate(['401']);
+      this.router.navigate(['login']);
     }
     else {
       if( this.role.includes('list_role') === false ){
