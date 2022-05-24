@@ -10,7 +10,6 @@ import { CategoryService } from '../../service/category.service';
 })
 export class CategoryFormComponent implements OnInit {
   category: Category = new Category();
-
   constructor(
     private categoryService : CategoryService,
     private route: ActivatedRoute,

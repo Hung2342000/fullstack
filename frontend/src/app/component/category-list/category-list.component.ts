@@ -44,18 +44,43 @@ export class CategoryListComponent implements OnInit {
     );
   }
   addCategory(){
-    this.router.navigate(['category-post']);
+    if(this.roles === null ){
+      this.router.navigate(['login']);
+    }
+    else {
+      if( this.roles.includes('add_category') === false ){
+        alert("không có quyền truy cập");
+      }
+      else{this.router.navigate(['category-post']);}
+    }
+
   }
 
    updateCategory(id : number){
-      this.router.navigate(['category-update',id]);
+     if(this.roles === null ){
+       this.router.navigate(['login']);
+     }
+     else {
+       if( this.roles.includes('edit_category') === false ){
+         alert("không có quyền truy cập");
+       }
+       else{this.router.navigate(['category-update',id]);}
+     }
   }
 
   deleteCategory(id : number){
-    this.categoryService.deleteCategory(id).subscribe(data =>
-      {
-        this.getCategory();
+    if(this.roles === null ){
+      this.router.navigate(['login']);
+    }
+    else {
+      if( this.roles.includes('delete_category') === false ){
+        alert("không có quyền truy cập");
       }
-      )
+      else{
+        this.categoryService.deleteCategory(id).subscribe(data =>
+        {this.getCategory();}
+      );}
+    }
+
 }
 }

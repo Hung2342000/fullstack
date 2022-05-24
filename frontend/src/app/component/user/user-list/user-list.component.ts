@@ -41,13 +41,32 @@ export class UserListComponent implements OnInit {
     )
   }
   addUser(){
-    this.router.navigate(['/user-post'])
+    if(this.roles === null ){
+      this.router.navigate(['login']);
+    }
+    else {
+      if( this.roles.includes('add_user') === false ){
+        alert("không có quyền truy cập");
+      }
+      else{this.router.navigate(['/user-post']);}
+    }
+
   }
 
   delete(id: number){
-    this.userService.deleteUser(id).subscribe(data =>
-      this.getUser()
-    )
+
+    if(this.roles === null ){
+      this.router.navigate(['login']);
+    }
+    else {
+      if( this.roles.includes('delete_user') === false ){
+        alert("không có quyền truy cập");
+      }
+      else{ this.userService.deleteUser(id).subscribe(data =>
+        this.getUser()
+      );}
+    }
+
   }
 
 }

@@ -42,17 +42,45 @@ export class ProductListComponent implements OnInit {
   }
 
   addProduct(){
-    this.router.navigate(['product-post']);
+    if(this.roles === null ){
+      this.router.navigate(['login']);
+    }
+    else {
+      if( this.roles.includes('add_product') === false ){
+        this.router.navigate(['401']);
+      }
+      else{this.router.navigate(['product-post']);;}
+    }
+
   }
 
   updateProduct(id: number){
-    this.router.navigate(['product-update',id]);
+    if(this.roles === null ){
+      this.router.navigate(['login']);
+    }
+    else {
+      if( this.roles.includes('edit_product') === false ){
+        alert("không có quyền truy cập");
+      }
+      else{this.router.navigate(['product-update',id]);}
+    }
+
   }
 
   deleteProduct(id : number){
-    this.productService.deleteProduct(id).subscribe(data =>
-      this.getProductList()
-    );
+    if(this.roles === null ){
+      this.router.navigate(['login']);
+    }
+    else {
+      if( this.roles.includes('edit_product') === false ){
+        alert("không có quyền truy cập");
+      }
+      else{
+        this.productService.deleteProduct(id).subscribe(data =>
+        this.getProductList()
+      );}
+    }
+
   }
 
 

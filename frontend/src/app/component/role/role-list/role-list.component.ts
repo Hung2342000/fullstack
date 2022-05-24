@@ -42,10 +42,27 @@ export class RoleListComponent implements OnInit {
   }
 
   addRole(){
-    this.router.navigate(['role-post']);
+    if(this.role === null ){
+      this.router.navigate(['login']);
+    }
+    else {
+      if( this.role.includes('add_role') === false ){
+        alert("không có quyền truy cập");
+      }
+      else{this.router.navigate(['role-post']);}
+    }
   }
 
   deleteRole(id: number){
-    this.roleService.deleteRole(id).subscribe(data => this.getRole())
+    if(this.role === null ){
+      this.router.navigate(['login']);
+    }
+    else {
+      if( this.role.includes('delete_role') === false ){
+        alert("không có quyền truy cập");
+      }
+      else{this.roleService.deleteRole(id).subscribe(data => this.getRole());}
+    }
+
   }
 }
