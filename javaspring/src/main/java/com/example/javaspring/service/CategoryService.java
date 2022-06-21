@@ -4,11 +4,17 @@ import com.example.javaspring.dto.CategoryDto;
 import com.example.javaspring.mapper.CategoryMapper;
 import com.example.javaspring.model.Category;
 import com.example.javaspring.repository.CategoryRepository;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.util.ResourceUtils;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 @Component
 public class CategoryService {
@@ -86,4 +92,24 @@ public class CategoryService {
         }
         return test;
     }
+
+    public String exportReport(String reportFormat) throws FileNotFoundException, JRException {
+        String path = "\\Users\\hung\\web";
+        List<Category> categoryList = categoryRepository.findAll();
+        File file = ResourceUtils.getFile("classpath:category.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(categoryList);
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("createBy", "hungPT");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        if (reportFormat.equalsIgnoreCase("html")) {
+
+            JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\category.html");
+        }
+        if (reportFormat.equalsIgnoreCase("pdf")) {
+            JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\category.pdf");
+        }
+        return path;
+    }
+
 }

@@ -21,6 +21,7 @@ public class ProductsController {
         return productsDtoList;
     }
 
+    @PreAuthorize("hasAuthority('edit_product')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ProductsDto getOne(@PathVariable long id){
         return productsService.getOne(id);
@@ -33,6 +34,7 @@ public class ProductsController {
 
     }
 
+    @PreAuthorize("hasAuthority('edit_product')")
     @RequestMapping(value = "/put/{id}", method = RequestMethod.PUT)
     public void productsPut(@RequestBody ProductsDto p, @PathVariable long id){
        productsService.putProduct(p,id);

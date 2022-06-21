@@ -16,20 +16,20 @@ public class RoleController {
     @Autowired
     RoleService roleService;
 
-    //@PreAuthorize("hasAuthority('list_role')")
+    @PreAuthorize("hasAuthority('list_role')")
     @GetMapping("/list")
     public List<RoleDto> getList(){
         List<RoleDto> roleDtos = roleService.getList();
         return roleDtos;
     }
 
-    //@PreAuthorize("hasAuthority('add_role')")
+    @PreAuthorize("hasAuthority('add_role')")
     @PostMapping("/post")
     public void postRole(@RequestBody RoleDto roleDto){
         roleService.post(roleDto);
     }
 
-    //@PreAuthorize("hasAuthority('delete_role')")
+    @PreAuthorize("hasAuthority('delete_role')")
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id){
         roleService.deleteRole( id) ;
