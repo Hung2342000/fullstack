@@ -49,7 +49,7 @@ export class ProductListComponent implements OnInit {
       if( this.roles.includes('add_product') === false ){
         this.router.navigate(['401']);
       }
-      else{this.router.navigate(['product-post']);;}
+      else{this.router.navigate(['product-post']);}
     }
 
   }

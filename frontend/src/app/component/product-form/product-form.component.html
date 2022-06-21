@@ -1,26 +1,25 @@
 <div class="col-8" >
     <h3> Create Product</h3>
-    <form (ngSubmit) = 'onSubmit()' [formGroup]="productForm">
+    <form (ngSubmit) = 'onSubmit()'>
 
         <div class="form-group">
             <label>Name Product</label>
             <input type="text"
-            formControlName = "nameProduct"
-            name="nameProduct"
+            [(ngModel)]="product.nameProduct"
+            name="name"
             class="form-control " >
         </div>
         <div class="form-group">
 
             <label>Price</label>
             <input type="text"
-            formControlName = "price"
+            [(ngModel)] = "product.price"
             name="price"
             class="form-control " >
         </div>
         <div class="form-group">
-
             <label>Category</label>
-          <ng-select [(ngModel)]="product.category" [multiple]="true" placeholder="Select Category" [ngModelOptions]="{standalone: true}">
+          <ng-select name="category" [(ngModel)]="product.category" placeholder="Select Category" [ngModelOptions]="{standalone: true}">
             <ng-option *ngFor="let cate of category" [value]="cate.nameCategory">{{cate.nameCategory}}</ng-option>
           </ng-select>
         </div>

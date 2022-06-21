@@ -16,13 +16,6 @@ export class ProductFormComponent implements OnInit {
   product : Product = new Product();
   category !: Category[];
 
-  productForm = new FormGroup({
-    nameProduct :new FormControl(),
-    price :new FormControl(),
-    category :new FormControl(),
-
-  })
-
   constructor(
     private categoryService : CategoryService,
     private router: Router,
@@ -43,12 +36,11 @@ export class ProductFormComponent implements OnInit {
     );
 
   }
-  saveProduct(){
 
-    this.productService.postProduct(this.productForm.value).subscribe(data => {
-    this.goToProductList();
-    console.log(data);
-     });
+  saveProduct(){
+    this.productService.postProduct(this.product).subscribe( data =>
+      this.goToProductList()
+    )
   }
 
   goToProductList() {
